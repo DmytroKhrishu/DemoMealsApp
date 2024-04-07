@@ -19,12 +19,19 @@ export default function MealsOverviewScreen({ route, navigation }) {
   }, [catId, navigation]);
 
   function renderMealItem(itemData) {
+    function pressHandler() {
+      navigation.navigate('MealDetails', {
+        mealId: itemData.item.id,
+      });
+    }
+
     const mealItemProps = {
       title: itemData.item.title,
       imageUrl: itemData.item.imageUrl,
       duration: itemData.item.duration,
       complexity: itemData.item.complexity,
       affordability: itemData.item.affordability,
+      onPress: pressHandler,
     };
 
     return <MealItem {...mealItemProps} />;

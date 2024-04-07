@@ -13,6 +13,7 @@ export default function MealItem({
   duration,
   complexity,
   affordability,
+  onPress
 }) {
   return (
     <View style={styles.mealItem}>
@@ -21,6 +22,7 @@ export default function MealItem({
         style={({ pressed }) => [
           pressed && Platform.OS === 'ios' ? styles.pressed : null,
         ]}
+        onPress={onPress}
       >
         <View>
           <Image source={{ uri: imageUrl }} style={styles.image} />
