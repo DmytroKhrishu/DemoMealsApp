@@ -1,20 +1,43 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import List from '../components/MealDetail/List';
+import IconButton from '../components/IconButton';
 
 export default function MealDetailsScreen({ route, navigation }) {
+  const [iconButtonName, setIconButtonName] = useState('star-outline');
+
   const mealId = route.params.mealId;
 
   const meal = MEALS.find((meal) => meal.id === mealId);
 
+  function pressHandler() {
+    setIconButtonName('star');
+  }
+
   useEffect(() => {
     navigation.setOptions({
       title: meal.title,
+      headerRight: () => {
+        return (
+          <IconButton
+            onPress={pressHandler}
+            icon={iconButtonName}
+            color={'white'}
+          />
+        );
+      },
     });
-  }, [meal, navigation]);
-  let stepCount = 0;
+  }, [meal, navigation, pressHandler, iconButtonName]);
+
   return (
     <ScrollView>
       <Image source={{ uri: meal.imageUrl }} style={styles.image} />
@@ -24,7 +47,7 @@ export default function MealDetailsScreen({ route, navigation }) {
         <Text style={styles.text}>Complexity: {meal.complexity}</Text>
         <Text style={styles.text}>Cost: {meal.affordability}</Text>
       </View>
-      <View>
+      <View style={styles.listsContainer}>
         <Text style={styles.subtitle}>Ingredients</Text>
         <List data={meal.ingredients} />
         <Text style={styles.subtitle}>Steps</Text>
@@ -35,6 +58,9 @@ export default function MealDetailsScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  listsContainer: {
+    marginBottom: 32,
+  },
   image: {
     width: '100%',
     height: 300,
@@ -68,5 +94,4 @@ const styles = StyleSheet.create({
   details: {
     padding: 16,
   },
-  
 });
