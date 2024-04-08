@@ -2,6 +2,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { MEALS } from '../data/dummy-data';
 import { useEffect } from 'react';
+import List from '../components/MealDetail/List';
 
 export default function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId;
@@ -24,21 +25,10 @@ export default function MealDetailsScreen({ route, navigation }) {
         <Text style={styles.text}>Cost: {meal.affordability}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Ingredients</Text>
-        {meal.ingredients.map((ingredient) => (
-          <Text key={ingredient} style={styles.text}>
-            {ingredient}
-          </Text>
-        ))}
-        <Text style={styles.title}>Steps</Text>
-        {meal.steps.map((step) => {
-          stepCount++;
-          return (
-            <Text key={step} style={styles.text}>
-              {stepCount}: {step}
-            </Text>
-          );
-        })}
+        <Text style={styles.subtitle}>Ingredients</Text>
+        <List data={meal.ingredients} />
+        <Text style={styles.subtitle}>Steps</Text>
+        <List data={meal.steps} />
       </View>
     </ScrollView>
   );
@@ -48,24 +38,35 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 300,
-    marginBottom: 16,
   },
   title: {
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 24,
-    padding: 8,
+    padding: 10,
     color: 'white',
+    borderBottomWidth: 4,
+    borderColor: 'white',
+  },
+  subtitle: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 20,
+    padding: 8,
+    marginHorizontal: 30,
+    color: 'white',
+    borderBottomWidth: 2,
+    borderTopWidth: 2,
+    borderColor: 'white',
   },
   text: {
     textAlign: 'center',
     fontSize: 16,
-    padding: 8,
+    padding: 6,
     color: 'white',
   },
   details: {
-    borderBottomWidth: 2,
-    borderColor: 'white',
     padding: 16,
   },
+  
 });
