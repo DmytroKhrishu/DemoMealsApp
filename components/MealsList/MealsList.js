@@ -12,7 +12,7 @@ export default function MealsList({items}) {
       complexity: itemData.item.complexity,
       affordability: itemData.item.affordability,
     };
-    console.log(mealItemProps)
+    
     return <MealItem {...mealItemProps} />;
   }
 

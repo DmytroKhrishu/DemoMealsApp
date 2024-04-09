@@ -43,7 +43,6 @@ export default function MealDetailsScreen({ route, navigation }) {
       },
     });
   }, [meal, navigation, changeFavoriteStatusHandler]);
-  console.log(meal)
 
   return (
     <ScrollView>
