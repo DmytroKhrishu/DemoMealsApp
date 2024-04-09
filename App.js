@@ -28,10 +28,11 @@ function BottomTabsNavigator() {
         },
         tabBarStyle: {
           backgroundColor: '#3f2f25',
-          paddingBottom: 3,
+          height: 60,
+          paddingBottom: 5,
         },
-        contentStyle: { backgroundColor: '#3f2f25' },
       }}
+      sceneContainerStyle={{ backgroundColor: '#3f2f25' }}
     >
       <BottomTabs.Screen
         name="Categories"
