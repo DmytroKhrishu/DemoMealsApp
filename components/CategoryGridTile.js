@@ -22,8 +22,8 @@ export default function CategoryGridTile({ title, color, onPress }) {
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 16,
-    height: 150,
+    margin: 12,
+    height: 120,
     borderRadius: 16,
     elevation: 10,
     shadowColor: 'black',
