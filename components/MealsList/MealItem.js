@@ -17,6 +17,7 @@ export default function MealItem({
   complexity,
   affordability,
 }) {
+  
   const navigation = useNavigation();
 
   function selectMealItemHandler() {
