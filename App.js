@@ -27,7 +27,7 @@ function BottomTabsNavigator() {
           fontWeight: 'bold',
         },
         tabBarStyle: {
-          backgroundColor: '#3f2f25',
+          backgroundColor: '#351401',
           height: 60,
           paddingBottom: 5,
         },
