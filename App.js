@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import CategoriesScreen from './screens/CategoriesScreen';
@@ -12,47 +13,46 @@ import FavoritesScreen from './screens/FavoritesScreen';
 import FavoritesContextProvider from './store/context/favorites-context';
 
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+const BottomTabs = createBottomTabNavigator();
 
-function DrawerNavigator() {
+function BottomTabsNavigator() {
   return (
-    <Drawer.Navigator
+    <BottomTabs.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: '#351401' },
         headerTintColor: 'white',
-        sceneContainerStyle: {
+        tabBarActiveTintColor: '#de8856',
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: 'bold',
+        },
+        tabBarStyle: {
           backgroundColor: '#3f2f25',
+          paddingBottom: 3,
         },
-        drawerStyle: {
-          backgroundColor: '#4f1f03',
-        },
-        drawerActiveTintColor: '#351401',
-        drawerInactiveTintColor: 'white',
-        drawerActiveBackgroundColor: '#b66e44',
-        drawerInactiveBackgroundColor: '#4f1f03',
-        drawerItemStyle: { borderRadius: 16, elevation: 5 },
+        contentStyle: { backgroundColor: '#3f2f25' },
       }}
     >
-      <Drawer.Screen
+      <BottomTabs.Screen
         name="Categories"
         component={CategoriesScreen}
         options={{
           title: 'All Categories',
-          drawerIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }) => (
             <Ionicons name="list" color={color} size={size} />
           ),
         }}
       />
-      <Drawer.Screen
+      <BottomTabs.Screen
         name="Favorites"
         component={FavoritesScreen}
         options={{
-          drawerIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }) => (
             <Ionicons name="star" color={color} size={size} />
           ),
         }}
       />
-    </Drawer.Navigator>
+    </BottomTabs.Navigator>
   );
 }
 
@@ -66,14 +66,12 @@ export default function App() {
             screenOptions={{
               headerStyle: { backgroundColor: '#351401' },
               headerTintColor: 'white',
-              contentStyle: {
-                backgroundColor: '#3f2f25',
-              },
+              contentStyle: { backgroundColor: '#3f2f25' },
             }}
           >
             <Stack.Screen
-              name="Drawer"
-              component={DrawerNavigator}
+              name="BottomTabs"
+              component={BottomTabsNavigator}
               options={{
                 headerShown: false,
               }}
